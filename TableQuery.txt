@@ -1,0 +1,28 @@
+Query
+
+1.Admin table
+•CREATE TABLE Admin (id INT AUTO_INCREMENT PRIMARY KEY, email VARCHAR (20),pass VARCHAR(20));
+
+2.User registration
+•CREATE TABLE userregi(uid INT AUTO_INCREMENT PRIMARY KEY,firstname VARCHAR(20),lastname VARCHAR(20),gender VARCHAR(10),dob DATE, email VARCHAR(50),pass VARCHAR(20),mobile VARCHAR(10),address VARCHAR(150));
+
+3.User login
+•CREATE TABLE userlogin(id INT AUTO_INCREMENT PRIMARY KEY, email VARCHAR(50),pass VARCHAR(20));
+
+4.Product category
+•CREATE TABLE productcat(cid INT AUTO_INCREMENT PRIMARY KEY,catname VARCHAR(20),description VARCHAR(150));
+
+5.Product
+•CREATE TABLE product(pid INT AUTO_INCREMENT PRIMARY KEY ,pname VARCHAR(20),price DOUBLE,qty INT,description VARCHAR(150),image BLOB, Cid INT,FOREIGN KEY cid REFERENCES productcat(cid));
+
+6.Cart
+•CREATE TABLE cart(cid INT AUTO_INCREMENT PRIMARY KEY,pid INT,uid INT,price DOUBLE,qty INT,FOREIGN KEY pid REFERENCES product (pid),FOREIGN KEY uid REFERENCES userregi(uid));
+
+7.order
+•CREATE TABLE orderpro(oid INT AUTO_INCREMENT PRIMARY KEY,uid INT,qty INT,product VARCHAR(20),totalamo DOUBLE,orderdate DATE,paymentmeth VARCHAR(20));
+
+8.Payment
+•CREATE TABLE payment(id INT AUTO_INCREMENT PRIMARY KEY,pid INT,uid INT,amount DOUBLE,paymentmeth VARCHAR(20),FOREIGN KEY pid REFERENCES product(pid),FOREIGN KEY uid REFERENCES userregi(uid),FOREIGN KEY paymentmeth REFERENCES orderpro(paymentmeth));
+
+9.Review
+•CREATE TABLE review(id INT AUTO_INCREMENT PRIMARY KEY,pid INT ,uid INT,rating INT(5),coment VARCHAR(150));
